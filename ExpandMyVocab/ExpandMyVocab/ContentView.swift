@@ -8,28 +8,26 @@
 
 import SwiftUI
 
+//card view for the list
 struct WordCardView: View {
     
     var CWord:String
     var rDefinitions:[String]
     
     var body: some View {
-        
         HStack{
             Text(self.CWord)
             VStack{
                 Text(self.rDefinitions.last!)
             }.padding(30)
-            
         }
     }
 }
-
+//View displaying the saved list of words
 struct wordlistView: View {
     
     @State var words: [objectwords]
     var body: some View{
-       
         NavigationView{
             VStack{
             List(self.words, id:\.word) { objectwords in
@@ -39,10 +37,6 @@ struct wordlistView: View {
         }
     }
 }
-
-
-
-
 
 struct ContentView: View {
     
@@ -55,23 +49,21 @@ struct ContentView: View {
     
     
     var body: some View {
-        
         NavigationView{
          
                 return ZStack{
+                   
+                 
                     VStack( spacing: 30){
                         
-                        if isWordfound{
+                    
                         Text(self.Word.word)
                         Text(self.Word.definitions.last!)
-                        }
+                    
                     TextField("What word do you want to Find", text: $newWord)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-
-                    
                     Button("Find word"){
-                        
                         self.Oxford.findword(Word: self.newWord){ definition in
                             //check if definition is nil, add definition to Word
                             if let definition = definition{
@@ -81,35 +73,41 @@ struct ContentView: View {
                         }
                          self.Word.word = self.newWord
                         self.isWordfound.toggle()
+                        }.padding(10)
+                        .foregroundColor(Color.white)
+                        .background(Color.red)
+                        .cornerRadius(20)
                         
-                    }
-                        if isWordfound{
                     
+                    
+                        
                     Button("Add word to you word List"){
                         self.wordList.append(self.Word)
                         
-                    }
-                        }
-                        
+                    }.padding(10)
+                    .foregroundColor(Color.white)
+                    .background(Color.red)
+                    .cornerRadius(20)
+                   
                         NavigationLink(destination: wordlistView(words: wordList)){
                             Text("Word list")
-                        }
+                        }.padding(10)
+                        .foregroundColor(Color.white)
+                        .background(Color.red)
+                        .cornerRadius(20)
                 }
                 .navigationBarTitle("Expand My Vocab!")
             }
         }
     }
 
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
-    
 }
-
+//Data main data structure that has the word and the array of definitions
 struct objectwords : Identifiable {
     var id = UUID()
     var word: String

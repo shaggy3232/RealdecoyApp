@@ -36,7 +36,7 @@ class OxfordAPI : ObservableObject{
 
         let session = URLSession.shared
         _ = session.dataTask(with: request, completionHandler: { data, response, error in
-            
+            //checks that data was returned
             if let data = data {
                 
                 
@@ -52,35 +52,25 @@ class OxfordAPI : ObservableObject{
                     else if word_id == "swimming"{
                                           decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["the sport or activity of propelling oneself through water using the limbs"])]
                                       }
-                    else if word_id == "money"{
-                                         decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["a small bowl-shaped container for drinking from, typically having a handle."])]
+                    else if word_id == "paralysis"{
+                                         decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["(of a person or part of the body) partly or wholly incapable of movement."])]
                                                         }
                     print(decodedData)
                     definition = decodedData.results[0].lexicalEntries[0].entries[0].senses?[0].definitions?.last ?? "definition not found"
                     completion(definition)
                     
-                } catch let e{
+        } catch let e{
                     print(e)
                     
                 }
             
-                  } else {
+        } else {
                       print(error)
                       print(NSString.init(data: data!, encoding: String.Encoding.utf8.rawValue))
-                  }
-            
-            
-         
+            }
         }).resume()
     }
-    
-    
-    
-    
-    
-    
-
-    
+  
     struct Entries : Decodable {
         var metadata: Metadata
         var results: [HeadwordEntry]
@@ -121,18 +111,4 @@ struct NewWord : Identifiable {
     
 }
 
-extension NewWord{
-                     init?(jsondata: [String: Any]){
-                       guard let id = jsondata["id"] as? String,
-                        let headwordentry = jsondata["HeadWordEntry"] as? [String],
-    
-                        let definitions = jsondata["definitions"] as? [String]
-                           else{
-                               return nil
-                       }
-                         
-                        
-                        self.id = id
-                        self.Definitions = definitions
-                     }
-                 }
+
