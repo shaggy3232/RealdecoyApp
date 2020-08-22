@@ -18,7 +18,7 @@ struct WordCardView: View {
         HStack{
             Text(self.CWord)
             VStack{
-                Text(self.rDefinitions[1])
+                Text(self.rDefinitions.last!)
             }.padding(30)
             
         }

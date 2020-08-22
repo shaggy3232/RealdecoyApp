@@ -60,7 +60,6 @@
 		E777D87E24EEEA4E000A48F0 /* ExpandMyVocab */ = {
 			isa = PBXGroup;
 			children = (
-				E777D89524EEF0CB000A48F0 /* Views */,
 				E777D89424EEF0B6000A48F0 /* API */,
 				E777D87F24EEEA4E000A48F0 /* AppDelegate.swift */,
 				E777D88124EEEA4E000A48F0 /* SceneDelegate.swift */,
@@ -88,13 +87,6 @@
 				E777D89A24EEF8C9000A48F0 /* oxfordAPI.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		E777D89524EEF0CB000A48F0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

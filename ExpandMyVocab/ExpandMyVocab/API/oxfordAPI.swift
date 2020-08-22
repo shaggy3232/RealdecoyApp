@@ -45,9 +45,16 @@ class OxfordAPI : ObservableObject{
                 do{
                     var decodedData = try decoder.decode(Entries.self, from: data)
                     var definition = "sfadfa"
-                    if word_id == "kill"{
-                        decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["random string"])]
+                    if word_id == "dollar"{
+                        decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["the basic monetary unit of the US, Canada, Australia, and certain countries in the Pacific, Caribbean, Southeast Asia, Africa, and South America."])]
                     }
+                    
+                    else if word_id == "swimming"{
+                                          decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["the sport or activity of propelling oneself through water using the limbs"])]
+                                      }
+                    else if word_id == "money"{
+                                         decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["a small bowl-shaped container for drinking from, typically having a handle."])]
+                                                        }
                     print(decodedData)
                     definition = decodedData.results[0].lexicalEntries[0].entries[0].senses?[0].definitions?.last ?? "definition not found"
                     completion(definition)
