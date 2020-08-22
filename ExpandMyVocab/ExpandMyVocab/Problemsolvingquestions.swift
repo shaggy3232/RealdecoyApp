@@ -43,3 +43,36 @@ func removeSmallest(numbers: [Int]) -> [Int] {
     a.remove(at: a.firstIndex(of: a.min()!)!)
     return(a)
 }
+
+//Question 3
+
+func splitCode(a: String) -> (String, String){
+
+    let stringArray = a.components(separatedBy: CharacterSet.decimalDigits.inverted)
+    let stringLetter = a.components(separatedBy: CharacterSet.letters.inverted)
+    return("(stringLetter.first!)", stringArray.last!)
+}
+
+// Question 4
+
+func duplicatecount(a: String) -> Int {
+  
+    var count = 0
+    var dict : [Character : Int] = [:]
+    
+    for char in a {
+        if let oldcount = dict[char]  {
+            dict[char] = oldcount + 1
+        } else {
+            dict[char] = 1
+        }
+        
+    }
+       
+    for (char,charcount) in dict{
+        if charcount > 1 {
+            count += 1
+        }
+    }
+return count
+}

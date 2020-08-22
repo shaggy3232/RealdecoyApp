@@ -14,7 +14,6 @@
 		E777D88924EEEA52000A48F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E777D88824EEEA52000A48F0 /* Preview Assets.xcassets */; };
 		E777D88C24EEEA52000A48F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E777D88A24EEEA52000A48F0 /* LaunchScreen.storyboard */; };
 		E777D89B24EEF8C9000A48F0 /* oxfordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777D89A24EEF8C9000A48F0 /* oxfordAPI.swift */; };
-		E7F8A50724EF6A0A004EADB0 /* WordCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A50624EF6A0A004EADB0 /* WordCardView.swift */; };
 		E7F8A50924EF70A1004EADB0 /* Problemsolvingquestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A50824EF70A1004EADB0 /* Problemsolvingquestions.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +27,6 @@
 		E777D88B24EEEA52000A48F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E777D88D24EEEA52000A48F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E777D89A24EEF8C9000A48F0 /* oxfordAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oxfordAPI.swift; sourceTree = "<group>"; };
-		E7F8A50624EF6A0A004EADB0 /* WordCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardView.swift; sourceTree = "<group>"; };
 		E7F8A50824EF70A1004EADB0 /* Problemsolvingquestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problemsolvingquestions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +93,6 @@
 		E777D89524EEF0CB000A48F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E7F8A50624EF6A0A004EADB0 /* WordCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,7 +173,6 @@
 				E7F8A50924EF70A1004EADB0 /* Problemsolvingquestions.swift in Sources */,
 				E777D89B24EEF8C9000A48F0 /* oxfordAPI.swift in Sources */,
 				E777D88424EEEA4E000A48F0 /* ContentView.swift in Sources */,
-				E7F8A50724EF6A0A004EADB0 /* WordCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

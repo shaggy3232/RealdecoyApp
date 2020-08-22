@@ -20,7 +20,7 @@ class OxfordAPI : ObservableObject{
         
     }
     
-    func findword(Word : String){
+    func findword(Word : String, completion:@escaping (String?) -> Void ){
         let appId = "9a9bccb7"
         let appKey = "027e306a39199dd41834a1c6f5bcd74d"
         let language = "en-gb"
@@ -37,64 +37,95 @@ class OxfordAPI : ObservableObject{
         let session = URLSession.shared
         _ = session.dataTask(with: request, completionHandler: { data, response, error in
             
-            if let response = response,
-                      let data = data,
-                      let jsonData = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                      print(response)
-                      print(jsonData)
+            if let data = data {
+                
+                
+                let decoder = JSONDecoder()
+               
+                do{
+                    var decodedData = try decoder.decode(Entries.self, from: data)
+                    var definition = "sfadfa"
+                    if word_id == "kill"{
+                        decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["random string"])]
+                    }
+                    print(decodedData)
+                    definition = decodedData.results[0].lexicalEntries[0].entries[0].senses?[0].definitions?.last ?? "definition not found"
+                    completion(definition)
+                    
+                } catch let e{
+                    print(e)
+                    
+                }
+            
                   } else {
                       print(error)
                       print(NSString.init(data: data!, encoding: String.Encoding.utf8.rawValue))
                   }
             
             
-           do{
-                          let fetch = try JSONDecoder().decode(results.self, from: data!)
-                        
-                          
-                          for i in fetch.HeadwordEntry{
-                              
-                              DispatchQueue.main.async {
-                                self.words.append(NewWord(id: i.id, Definitions: i.lexicalEntry.Entry.Sense.definitions))
-                              }
-                              
-                          }
-                          
-                      }
-                      catch{
-                          print(error.localizedDescription)
-                      }
+         
         }).resume()
     }
     
     
-    struct NewWord : Identifiable {
+    
+    
+    
+    
+
+    
+    struct Entries : Decodable {
+        var metadata: Metadata
+        var results: [HeadwordEntry]
+    }
+    
+    struct HeadwordEntry : Decodable{
         var id: String
-        var Definitions: [String]
+        var lexicalEntries : [lexicalEntry]
+    }
+    struct Metadata : Decodable{
+        var operation: String
+        var provider: String
+        var schema: String
+    }
+    struct lexicalEntry : Decodable {
         
+        var entries : [Entry]
     }
     
-    struct results : Decodable {
-        
-        var HeadwordEntry: [lexicalEntries]
-    }
-    
-    struct lexicalEntries : Decodable {
-        var id : String
-        var lexicalEntry : entries
-    }
-    
-    struct entries : Decodable{
-        var Entry: senses
+    struct Entry : Decodable{
+        var senses : [Sense]?
     }
 
-    struct senses : Decodable{
-        var Sense: Type1
+    struct Sense : Decodable{
+        var definitions: [String]?
     }
 
-    struct Type1 : Decodable {
-        var definitions : [String]
-    }
+   
+  
     
     
 }
+
+struct NewWord : Identifiable {
+    var id: String
+    var Definitions: [String]
+    
+    
+}
+
+extension NewWord{
+                     init?(jsondata: [String: Any]){
+                       guard let id = jsondata["id"] as? String,
+                        let headwordentry = jsondata["HeadWordEntry"] as? [String],
+    
+                        let definitions = jsondata["definitions"] as? [String]
+                           else{
+                               return nil
+                       }
+                         
+                        
+                        self.id = id
+                        self.Definitions = definitions
+                     }
+                 }
