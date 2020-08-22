@@ -76,3 +76,16 @@ func duplicatecount(a: String) -> Int {
     }
 return count
 }
+
+//Question 5
+
+
+func josephus(n: Int, i: Int){
+    var sum = 0
+    for c in 1..<n
+          {
+              sum = (sum + i) % c;
+          }
+    
+          print(sum+1+i)
+}
