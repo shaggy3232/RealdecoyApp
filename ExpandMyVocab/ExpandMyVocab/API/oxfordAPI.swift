@@ -44,7 +44,7 @@ class OxfordAPI : ObservableObject{
                
                 do{
                     var decodedData = try decoder.decode(Entries.self, from: data)
-                    var definition = "sfadfa"
+                    var definition = "Empty String"
                     if word_id == "dollar"{
                         decodedData.results[0].lexicalEntries[0].entries[0].senses = [Sense(definitions: ["the basic monetary unit of the US, Canada, Australia, and certain countries in the Pacific, Caribbean, Southeast Asia, Africa, and South America."])]
                     }
